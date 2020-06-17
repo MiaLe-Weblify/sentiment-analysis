@@ -28,5 +28,19 @@
 
 	</div>
 
+		<div class="opinion">
+
+		<form action="{{ url_for('opinion')}}" method="POST">
+		<p>Was the model correct?</p>
+		<input type="radio" id="yes" name="options" value="1">
+		<label for="yes">Yes</label><br>
+		<input type="radio" id="no" name="options" value="0">
+		<label for="no">No</label><br>
+		<button type="submit" class="btn btn-primary">Submit</button>
+		
+	</form>
+		
+	</div>	
+
 </body>
 </html>
