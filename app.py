@@ -37,5 +37,18 @@ def predict():
         my_prediction = classifier.classify(format_sentence(message))
     return render_template('result.html',prediction = my_prediction)
 
+@app.route('/opinion',methods=['GET', 'POST'])
+def opinion(): 
+    if request.method == 'POST': 
+        req = request.form['options'] 
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO MyDB(opinion) VALUES (%s)", ([req]))
+        mysql.connection.commit()
+        cur.close()
+        print(req)
+        return render_template('home.html')
+
+    return render_template('opinion.html', opinion = req)
+
 if __name__ == '__main__':
     app.run(host = "0.0.0.0", port = 80, debug=True)
